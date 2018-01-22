@@ -34,6 +34,9 @@ public class TopTrumpsCLIApplication {
 		// create a cmdLog instance to print, record and write logs.
 		cmdLog logs = new cmdLog();
 		
+		// create database class.
+		cmdDatabase db = new cmdDatabase();
+		
 		// Loop until the user wants to exit the game
 		while (!userWantsToQuit) {
 
@@ -50,11 +53,11 @@ public class TopTrumpsCLIApplication {
 				case 1 : {
 					// user wants to play a new game. Create a game and start it.
 					if (writeGameLogsToFile) {
-						cmdGameControl cmdGame = new cmdGameView(logs);
+						cmdGameControl cmdGame = new cmdGameControl(logs, db);
 						logs.record("");
 						cmdGame.start();
 					} else {
-						cmdGameControl cmdGame = new cmdGameView();
+						cmdGameControl cmdGame = new cmdGameControl(db);
 						cmdGame.start();
 					}
 					break;
@@ -62,11 +65,11 @@ public class TopTrumpsCLIApplication {
 				case 2 : {
 					// user wants to print game history.
 					if (writeGameLogsToFile) {
-						cmdGameHistory history = new cmdGameHistory();
+						cmdGameHistory history = new cmdGameHistory(db);
 						history.getHistory();
 						logs.record(" user checked game history.");
 					} else {
-						cmdGameHistory history = new cmdGameHistory();
+						cmdGameHistory history = new cmdGameHistory(db);
 						history.getHistory();
 					}
 					
