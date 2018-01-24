@@ -19,11 +19,11 @@ public class cmdLog {
 	public cmdLog () {
 		BASEDIR = "../../";
 		fileName = BASEDIR + "cmdGameLogs.txt";
-		System.out.println(fileName);
+		//System.out.println(fileName);
 		try {
 			this.writer = new FileWriter(fileName);
 		} catch (IOException e) {
-			System.err.println("log recording system initial failed.");
+			System.err.println("log recording system initial failed.\n");
 		}
 		
 	}
@@ -35,7 +35,7 @@ public class cmdLog {
 	public void record (String logContents) {
 		try {
 			time = Calendar.getInstance().getTime() ;
-			log = "[" + time + "]: " + logContents + "\n";
+			log = "[" + time + "]: " + logContents + " \n";
 			this.writer.write(log);
 		} catch (IOException e) {
 			System.err.println("log writing is failed.");

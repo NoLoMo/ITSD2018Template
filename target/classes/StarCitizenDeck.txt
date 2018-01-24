@@ -49,6 +49,7 @@ Orion 10 1 6 2 9
 Sabre 2 7 2 5 0
 
 Vanguard 3 4 5 5 2
+
 350r 1 9 2 3 0
 
 Avenger 2 5 4 3 2

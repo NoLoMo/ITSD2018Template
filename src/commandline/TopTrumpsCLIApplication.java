@@ -18,7 +18,8 @@ public class TopTrumpsCLIApplication {
 		
 		boolean writeGameLogsToFile = false; // Should we write game logs to file?
 		if (args[0].equalsIgnoreCase("true")) writeGameLogsToFile=true; // Command line selection
-		
+		cmdLog logs = null;
+		cmdDatabase db;
 		// State
 		boolean userWantsToQuit = false; // flag to check whether the user wants to quit the application
 		
@@ -28,14 +29,18 @@ public class TopTrumpsCLIApplication {
 		
 		//
 		System.out.println("Commend Line Version Game is loading ......\n");
-		if (writeGameLogsToFile) 
+		if (writeGameLogsToFile) { 
 			System.out.println("Log recording function is avaliable ......\n");
+	
+		}
 		
 		// create a cmdLog instance to print, record and write logs.
-		cmdLog logs = new cmdLog();
-		
-		// create database class.
-		cmdDatabase db = new cmdDatabase();
+		logs = new cmdLog();
+		if (writeGameLogsToFile) { 
+			db = new cmdDatabase(logs);
+		} else
+			db = new cmdDatabase();
+
 		
 		// Loop until the user wants to exit the game
 		while (!userWantsToQuit) {
@@ -93,9 +98,9 @@ public class TopTrumpsCLIApplication {
 	
 	static int manu (Scanner in) {
 		int op = 0;
-		System.out.println("------------------------");
-		System.out.println("1  Play a new game.\n2  Game record.\n3  Exit the game.");
-		System.out.println("------------------------");
+		System.out.println("\t------------------------");
+		System.out.println("\t1  Play a new game.\n\t2  Game record.\n\t3  Exit the game.");
+		System.out.println("\t------------------------");
 //		try {
 			if(in.hasNext()) {
 				op = in.nextInt();
