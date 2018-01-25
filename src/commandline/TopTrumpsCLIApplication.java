@@ -24,7 +24,8 @@ public class TopTrumpsCLIApplication {
 		boolean userWantsToQuit = false; // flag to check whether the user wants to quit the application
 		
 		// input detection variables
-		Scanner in = new Scanner(System.in);
+		Scanner in;
+		in = new Scanner(System.in);
 		int userChoice = 0;
 		
 		//
@@ -49,7 +50,7 @@ public class TopTrumpsCLIApplication {
 			// Add your game logic here based on the requirements
 			// ----------------------------------------------------
 			
-			userChoice = manu(in);
+			userChoice = manu(in, userChoice);
 			switch (userChoice) {
 				case 0 : {
 					// no valid input is detected.
@@ -60,10 +61,10 @@ public class TopTrumpsCLIApplication {
 					if (writeGameLogsToFile) {
 						cmdGameControl cmdGame = new cmdGameControl(logs, db);
 						logs.record("");
-						cmdGame.start();
+						cmdGame.start(in);
 					} else {
 						cmdGameControl cmdGame = new cmdGameControl(db);
-						cmdGame.start();
+						cmdGame.start(in);
 					}
 					break;
 				}
@@ -96,15 +97,13 @@ public class TopTrumpsCLIApplication {
 
 	}
 	
-	static int manu (Scanner in) {
-		int op = 0;
+	static int manu (Scanner in, int op) {
 		System.out.println("\t------------------------");
-		System.out.println("\t1  Play a new game.\n\t2  Game record.\n\t3  Exit the game.");
+		System.out.println("\t- 1  Play a new game.\n\t- 2  Game record.\n\t- 3  Exit the game.");
 		System.out.println("\t------------------------");
 //		try {
-			if(in.hasNext()) {
+			if(in.hasNextInt()) 
 				op = in.nextInt();
-			}
 //		} catch (IOException e) {
 //			System.err.println(" manu input has problem.");
 //		}

@@ -46,7 +46,7 @@ public class cmdDatabase {
 	private void loadFile () {
 		classFile = "StarCitizenDeck.txt";
 		try {
-			System.out.println(classFile);
+			//System.out.println(classFile);
 			this.reader = new FileReader(classFile);
 			in = new Scanner(reader);
 		} catch (IOException e) {
