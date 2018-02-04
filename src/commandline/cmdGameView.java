@@ -1,74 +1,42 @@
 package commandline;
 
-import java.util.Scanner;
+import java.awt.Color;
+import java.util.ArrayList;
+
+import commandline.vo.CMDGameModelCard;
+import commandline.function.CMDDatabase;
+import commandline.function.CMDLog;
+import ult.Utility;
 
 /**
- * This class 
- * @author 
+ * This class is the view of MVC framework.
+ * @author yifeng sun
  */
-public class cmdGameView {
-
-	private boolean isLogs = false;
-	private int PLAYERNUM;
-	private cmdLog logs;
-	private cmdDatabase db;
-	private Scanner in;
-	/**
-	 * when tests is available, this constructor is used.
-	 */
-	public cmdGameView (cmdLog logs, cmdDatabase db, int PLAYERNUM) {
-		isLogs = true;
-		this.PLAYERNUM = PLAYERNUM;
-		this.logs = logs;
-		this.db = db;
+public class CMDGameView {
+	private CMDGameControl control;
+	
+	
+	public CMDGameView(CMDLog testLog, CMDDatabase db) {
+		this.control = new CMDGameControl(testLog, db);
+		System.out.println("//////////// Game is Starting //////////////////");
+		this.control.newRound();
+		System.out.println("////////////////// Game Over ////////////////// ");
 		
-	}
-	
-	/**
-	 * when tests is unavailable, this constructor is used.
-	 */
-	public cmdGameView (cmdDatabase db, int PLAYERNUM) {
-		this.PLAYERNUM = PLAYERNUM;
-		this.db = db;
-	}
-	
-	/**
-	 * show human player's cards
-	 * @param players are all game players
-	 */
-	public void showCards(cmdGameModelPlayer[] players, cmdGameModelCard[] cards) {
-		System.out.println("---Top of your cards---");
-		int index = players[0].topHandCards();
-		System.out.println("Description Size Speed Range Firepower Cargo");
-		System.out.println(  cards[index].detail());
-
-	}
-	
-	public void showRoundStartInfo (int roundNum, int activePlayer) {
-		System.out.println("////////////////////  Round "+roundNum+"  ///////////////////////");
-		System.out.println("The player has been choosen is No." + activePlayer + " player");
-	}
-	
-	/**
-	 * 
-	 * @param in
-	 * @return
-	 */
-	public String chooseCategory (Scanner in) {
-		System.out.println("---Please choose a Category---");
-		String result = "";
-		do {
-		if(in.hasNext())
-			result = in.next();
-		} while(result == null);
-		return result;
-	}
-	
-	public void showRoundWinner(int content) {
-		if (content == -1)
-			System.out.println("---No player wins this round");
-		else
-			System.out.println("---Winner is No." + content + " player");
+//		ArrayList<CMDGameModelCard> arr = new ArrayList<CMDGameModelCard>();
+//		
+//				arr.add(new CMDGameModelCard(1, "350", 3, 2, 3, 4,5));
+//				arr.add(new CMDGameModelCard(2, "351", 32, 2, 3, 4,5));
+//				arr.add(new CMDGameModelCard(3, "352", 12, 2, 3, 4,5)); 
+//				arr.add(new CMDGameModelCard(4, "353", 12, 2, 3, 4,5)); 
+//				arr.add(new CMDGameModelCard(5, "354", 12, 2, 3, 4,5));
+//		
+//		Utility.sort(arr, 1);
+//		for(int i = 0; i < arr.size(); i++) {
+//			System.out.println(arr.get(i).getId()+ "---" + arr.get(i).getSize());
+//		}
+		
+//		System.out.println(CMDGameControl.isDraw(arr, 1));
+		
 	}
 	
 	

@@ -1,5 +1,5 @@
+import commandline.CMDGameView;
 import commandline.TopTrumpsCLIApplication;
-
 import online.TopTrumpsOnlineApplication;
 
 
@@ -12,9 +12,10 @@ public class TopTrumps {
 		System.out.println("--------------------");
 		System.out.println("--- Top Trumps   ---");
 		System.out.println("--------------------");
+		
 		// command line switches
 		boolean onlineMode = false;
-		boolean commandLineMode = true;
+		boolean commandLineMode = false;
 		boolean printTestLog = false;
 		
 		// check the command line for what switches are active
